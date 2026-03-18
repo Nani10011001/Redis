@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+  backend:
+    build: . #build is use the dockerfile thing of it
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+    command: npm start
