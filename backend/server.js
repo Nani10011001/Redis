@@ -1,11 +1,23 @@
+import "./Config/dotenvConfig.js"
 import express from "express";
-
+import axios from "axios";
+import router from "./datatypesRedis/redisSample/redis.js";
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send("Hello from Docker 🚀");
-});
+app.use(express.json())
 
-app.listen(3000, () => {
-  console.log("http://localhost:3000");
+app.use("/api",router)
+const PORT=process.env.PORT || 5000
+
+const serverStart=async()=>{
+  try {
+    app.listen(PORT, () => {
+  console.log("http://localhost:5000");
 });
+  } catch (error) {
+    console.error(error)
+    process.exit(1)
+  }
+}
+serverStart()
+
